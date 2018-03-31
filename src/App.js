@@ -14,6 +14,9 @@ class App extends Component {
   state = initialState
 
   render() {
+    // eslint-disable-next-line
+    const { name, email, ticketType, food, agreeTerms, countdown } = this.state
+
     return (
       <section className="section">
         <div className="container">
@@ -21,7 +24,13 @@ class App extends Component {
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
-              <input className="input" type="text" placeholder="Text input" />
+              <input
+                value={name}
+                onChange={e => this.setState({ name: e.target.value })}
+                className="input"
+                type="text"
+                placeholder="Text input"
+              />
             </div>
           </div>
 
@@ -29,6 +38,8 @@ class App extends Component {
             <label className="label">Email</label>
             <div className="control has-icons-left has-icons-right">
               <input
+                value={email}
+                onChange={e => this.setState({ email: e.target.value })}
                 className="input is-danger"
                 type="email"
                 placeholder="Email input"
@@ -47,7 +58,10 @@ class App extends Component {
             <label className="label">Ticket Type</label>
             <div className="control">
               <div className="select">
-                <select>
+                <select
+                  value={ticketType}
+                  onChange={e => this.setState({ ticketType: e.target.value })}
+                >
                   <option>Select type ...</option>
                   <option value="regular">Regular - 100THB</option>
                   <option value="premium">Premium - 300THB</option>
@@ -60,10 +74,20 @@ class App extends Component {
             <label className="label">Add food?</label>
             <div className="control">
               <label className="radio">
-                <input type="radio" name="question" /> Yes (+50 THB)
+                <input
+                  onClick={() => this.setState({ food: true })}
+                  type="radio"
+                  name="question"
+                />{' '}
+                Yes (+50 THB)
               </label>
               <label className="radio">
-                <input type="radio" name="question" /> No
+                <input
+                  onClick={() => this.setState({ food: false })}
+                  type="radio"
+                  name="question"
+                />{' '}
+                No
               </label>
             </div>
           </div>
@@ -71,8 +95,12 @@ class App extends Component {
           <div className="field">
             <div className="control">
               <label className="checkbox">
-                <input type="checkbox" /> I agree to the{' '}
-                <a href="">terms and conditions</a>
+                <input
+                  value={agreeTerms}
+                  onClick={e => this.setState({ agreeTerms: e.target.checked })}
+                  type="checkbox"
+                />{' '}
+                I agree to the <a href="">terms and conditions</a>
               </label>
             </div>
           </div>
@@ -84,7 +112,12 @@ class App extends Component {
               <button className="button is-link">Register</button>
             </div>
             <div className="control">
-              <button className="button is-text">Reset</button>
+              <button
+                className="button is-text"
+                onClick={() => this.setState(initialState)}
+              >
+                Reset
+              </button>
             </div>
           </div>
         </div>
