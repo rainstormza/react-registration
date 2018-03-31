@@ -3,12 +3,9 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { setField, resetFields, setCountdown } from './redux'
-
-const initialState = {}
+import Input from './Input'
 
 class App extends Component {
-  state = initialState
-
   componentDidMount() {
     this.props.setCountdown()
 
@@ -41,7 +38,13 @@ class App extends Component {
         <div className="container">
           <h1 className="title">Evenn Registration Form</h1>
           <p>Registration will be closed in {countdown}</p>
-          <div className="field">
+          <Input
+            value={name}
+            onChange={value => setField('name', value)}
+            placeholder="e.g. John Doe"
+            label="Name"
+          />
+          {/* <div className="field">
             <label className="label">Name</label>
             <div className="control">
               <input
@@ -52,9 +55,18 @@ class App extends Component {
                 placeholder="Text input"
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className="field">
+          <Input
+            value={email}
+            onChange={value => setField('email', value)}
+            placeholder="Email input"
+            label="Email"
+            type="email"
+            icon="envelope"
+            error="This email is invalid"
+          />
+          {/* <div className="field">
             <label className="label">Email</label>
             <div className="control has-icons-left has-icons-right">
               <input
@@ -72,7 +84,7 @@ class App extends Component {
               </span>
             </div>
             <p className="help is-danger">This email is invalid</p>
-          </div>
+          </div> */}
 
           <div className="field">
             <label className="label">Ticket Type</label>
