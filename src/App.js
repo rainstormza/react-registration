@@ -4,13 +4,7 @@ import './App.css'
 import { connect } from 'react-redux'
 import { setField, resetFields, setCountdown } from './redux'
 
-const initialState = {
-  name: '',
-  email: '',
-  ticketType: '',
-  food: false,
-  agreeTerms: false
-}
+const initialState = {}
 
 class App extends Component {
   state = initialState
@@ -150,6 +144,11 @@ class App extends Component {
 }
 
 // conntect(mapStateToProps, mapDispatchToProps)
-export default connect(state => state, { setField, resetFields, setCountdown })(
-  App
-)
+// const mapDispatchToProps = { setField, resetFields, setCountdown };
+const mapDispatchToProps = dispatch => ({
+  setField: (key, value) => dispatch(setField(key, value)),
+  resetFields: () => dispatch(resetFields()),
+  setCountdown: () => dispatch(setCountdown())
+})
+
+export default connect(state => state, mapDispatchToProps)(App)
