@@ -43,7 +43,17 @@ class App extends Component {
 
   render() {
     // eslint-disable-next-line
-    const { name, email, ticketType, food, agreeTerms, countdown } = this.state
+    const {
+      name,
+      email,
+      ticketType,
+      food,
+      agreeTerms,
+      // countdown,
+      setField
+    } = this.props
+
+    const { countdown } = this.state
 
     return (
       <section className="section">
@@ -55,7 +65,7 @@ class App extends Component {
             <div className="control">
               <input
                 value={name}
-                onChange={e => this.setState({ name: e.target.value })}
+                onChange={e => setField('name', e.target.value)}
                 className="input"
                 type="text"
                 placeholder="Text input"
@@ -68,7 +78,7 @@ class App extends Component {
             <div className="control has-icons-left has-icons-right">
               <input
                 value={email}
-                onChange={e => this.setState({ email: e.target.value })}
+                onChange={e => setField('email', e.target.value)}
                 className="input is-danger"
                 type="email"
                 placeholder="Email input"
@@ -89,7 +99,7 @@ class App extends Component {
               <div className="select">
                 <select
                   value={ticketType}
-                  onChange={e => this.setState({ ticketType: e.target.value })}
+                  onChange={e => setField('ticketType', e.target.value)}
                 >
                   <option>Select type ...</option>
                   <option value="regular">Regular - 100THB</option>
@@ -104,7 +114,7 @@ class App extends Component {
             <div className="control">
               <label className="radio">
                 <input
-                  onClick={() => this.setState({ food: true })}
+                  onClick={() => setField('food', true)}
                   type="radio"
                   name="question"
                 />{' '}
@@ -112,7 +122,7 @@ class App extends Component {
               </label>
               <label className="radio">
                 <input
-                  onClick={() => this.setState({ food: false })}
+                  onClick={() => setField('food', false)}
                   type="radio"
                   name="question"
                 />{' '}
@@ -126,7 +136,7 @@ class App extends Component {
               <label className="checkbox">
                 <input
                   value={agreeTerms}
-                  onClick={e => this.setState({ agreeTerms: e.target.checked })}
+                  onClick={e => setField('agreeTerms', e.target.checked)}
                   type="checkbox"
                 />{' '}
                 I agree to the <a href="">terms and conditions</a>
