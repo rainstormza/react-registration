@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import logo from './logo.svg'
 import './App.css'
+import moment from 'moment'
 
 const initialState = {
   name: '',
@@ -10,8 +11,33 @@ const initialState = {
   agreeTerms: false
 }
 
+const closeTime = moment('2018-04-01 12:00')
+
 class App extends Component {
   state = initialState
+
+  componentDidMount() {
+    // console.log(this)
+    this.calcTime()
+
+    this.interval = setInterval(() => {
+      this.calcTime()
+    }, 1000)
+  }
+
+  calcTime() {
+    const millis = closeTime.diff(moment())
+    const duration = moment.duration(millis)
+    this.setState({
+      countdown: `${Math.floor(
+        duration.asHours()
+      )} hours ${duration.minutes()} minutes ${duration.seconds()} seconds`
+    })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
 
   render() {
     // eslint-disable-next-line
@@ -21,6 +47,7 @@ class App extends Component {
       <section className="section">
         <div className="container">
           <h1 className="title">Evenn Registration Form</h1>
+          <p>Registration will be closed in {countdown}</p>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
