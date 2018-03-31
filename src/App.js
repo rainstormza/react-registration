@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 // import logo from './logo.svg'
 import './App.css'
-import moment from 'moment'
 import { connect } from 'react-redux'
-import { setField, resetFields } from './redux'
+import { setField, resetFields, setCountdown } from './redux'
 
 const initialState = {
   name: '',
@@ -13,28 +12,15 @@ const initialState = {
   agreeTerms: false
 }
 
-const closeTime = moment('2018-04-01 12:00')
-
 class App extends Component {
   state = initialState
 
   componentDidMount() {
-    // console.log(this)
-    this.calcTime()
+    this.props.setCountdown()
 
     this.interval = setInterval(() => {
-      this.calcTime()
+      this.props.setCountdown()
     }, 1000)
-  }
-
-  calcTime() {
-    const millis = closeTime.diff(moment())
-    const duration = moment.duration(millis)
-    this.setState({
-      countdown: `${Math.floor(
-        duration.asHours()
-      )} hours ${duration.minutes()} minutes ${duration.seconds()} seconds`
-    })
   }
 
   componentWillUnmount() {
@@ -49,12 +35,12 @@ class App extends Component {
       // eslint-disable-next-line
       food,
       agreeTerms,
-      // countdown,
+      countdown,
       setField,
       resetFields
     } = this.props
 
-    const { countdown } = this.state
+    // const { countdown } = this.state
 
     return (
       <section className="section">
@@ -164,4 +150,6 @@ class App extends Component {
 }
 
 // conntect(mapStateToProps, mapDispatchToProps)
-export default connect(state => state, { setField, resetFields })(App)
+export default connect(state => state, { setField, resetFields, setCountdown })(
+  App
+)
