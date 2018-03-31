@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 // import logo from './logo.svg'
 import './App.css'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import { setField } from './redux'
 
 const initialState = {
   name: '',
@@ -153,4 +155,5 @@ class App extends Component {
   }
 }
 
-export default App
+// conntect(mapStateToProps, mapDispatchToProps)
+export default connect(state => state, { setField })(App)
