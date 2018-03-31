@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { setField } from './redux'
+import { setField, resetFields } from './redux'
 
 const initialState = {
   name: '',
@@ -42,15 +42,16 @@ class App extends Component {
   }
 
   render() {
-    // eslint-disable-next-line
     const {
       name,
       email,
       ticketType,
+      // eslint-disable-next-line
       food,
       agreeTerms,
       // countdown,
-      setField
+      setField,
+      resetFields
     } = this.props
 
     const { countdown } = this.state
@@ -151,10 +152,7 @@ class App extends Component {
               <button className="button is-link">Register</button>
             </div>
             <div className="control">
-              <button
-                className="button is-text"
-                onClick={() => this.setState(initialState)}
-              >
+              <button className="button is-text" onClick={() => resetFields()}>
                 Reset
               </button>
             </div>
@@ -166,4 +164,4 @@ class App extends Component {
 }
 
 // conntect(mapStateToProps, mapDispatchToProps)
-export default connect(state => state, { setField })(App)
+export default connect(state => state, { setField, resetFields })(App)
