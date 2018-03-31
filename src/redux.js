@@ -44,7 +44,10 @@ export const setField = (key, value) => ({
 })
 
 export const resetFields = () => ({
-  type: RESET_FIELDS
+  type: RESET_FIELDS,
+  payload: new Promise((resolve, reject) => {
+    setTimeout(() => resolve(555), 5000)
+  })
 })
 
 export const setCountdown = () => ({
