@@ -2,6 +2,7 @@ import moment from 'moment'
 
 const SET_FIELD = 'SET_FIELD'
 const RESET_FIELDS = 'RESET_FIELDS'
+const RESET_FIELDS_FULFILLED = 'RESET_FIELDS_FULFILLED'
 const SET_COUNTDOWN = 'SET_COUNTDOWN'
 
 const initialState = {
@@ -26,6 +27,12 @@ export default (state = initialState, action) => {
         ...initialState,
         countdown: state.countdown
       }
+    case RESET_FIELDS_FULFILLED: {
+      return {
+        ...initialState,
+        countdown: state.countdown
+      }
+    }
     case SET_COUNTDOWN:
       return {
         ...state,
