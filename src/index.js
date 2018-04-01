@@ -4,10 +4,10 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import logger from 'redux-logger'
-import reducer from './redux.js'
+import reducer from './features/event/redux'
 import 'bulma/css/bulma.css'
 import './index.css'
-import App from './App'
+import Register from './features/event/Register'
 import registerServiceWorker from './registerServiceWorker'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -19,7 +19,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Register />
   </Provider>,
   document.getElementById('root')
 )

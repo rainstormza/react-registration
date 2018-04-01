@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-// import logo from './logo.svg'
-import './App.css'
+import './Register.css'
 import { connect } from 'react-redux'
 import { setField, resetFields, setCountdown } from './redux'
-import Input from './Input'
+import Input from '../../common/Input'
 
 class App extends Component {
   componentDidMount() {
