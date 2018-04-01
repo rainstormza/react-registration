@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setField, resetFields, setCountdown } from './redux'
 import Input from '../../common/Input'
 
-class App extends Component {
+export class Register extends Component {
   componentDidMount() {
     this.props.setCountdown()
 
@@ -162,4 +162,4 @@ const mapDispatchToProps = dispatch => ({
   setCountdown: () => dispatch(setCountdown())
 })
 
-export default connect(state => state, mapDispatchToProps)(App)
+export default connect(state => state, mapDispatchToProps)(Register)
